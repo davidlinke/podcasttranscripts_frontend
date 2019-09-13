@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Playfair+Display:400,400i,700,700i,900,900i&display=swap");
+* {
+  font-family: "Playfair Display", serif;
+  color: #383838; }
+
+body {
+  background-color: #f8f8f8; }
+
+.outerContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px; }
+
+.navLogo {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.1rem; }
+
+.navContainer {
+  margin: 30px auto 20px auto; }
+
+.footerContainer {
+  text-align: center;
+  padding-bottom: 5rem; }
+
+/*# sourceMappingURL=app.css.map */
