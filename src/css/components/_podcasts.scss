@@ -1,0 +1,28 @@
+.podcastDiv {
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+}
+
+.podcastImage {
+	height: 100%;
+	width: 100%;
+	transition: all 0.5s;
+}
+
+.podcastDiv:hover .podcastImage,
+.podcastDiv:focus .podcastImage {
+	transform: scale(1.07);
+}
+
+.podcastsContainer {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.podcastDiv {
+	margin: 10px;
+}

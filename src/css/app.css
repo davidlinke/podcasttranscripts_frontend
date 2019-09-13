@@ -3,6 +3,71 @@
   font-family: "Playfair Display", serif;
   color: #383838; }
 
+a {
+  text-decoration: none; }
+
+.underlineLink,
+.noBackground {
+  position: relative; }
+
+.navLink {
+  display: inline-block; }
+
+button,
+.navLink {
+  margin: 0 0.5rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase; }
+
+.underlineLink::after,
+.noBackground::after {
+  content: '';
+  background: #e2be3f;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform 0.5s; }
+
+.underlineLink:hover::after,
+.noBackground:hover::after {
+  transform: scaleY(1); }
+
+h1 {
+  font-weight: 700;
+  margin: 0; }
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  margin: 0; }
+
+.homeTitle {
+  margin: 4rem 0 0.2rem 0;
+  background: linear-gradient(45deg, #e2be3f, #cf9c2e);
+  background-clip: text;
+  -webkit-text-fill-color: transparent; }
+
+.homeSubtitle {
+  margin-bottom: 4rem; }
+
+button {
+  border: transparent;
+  background-color: #61cb75;
+  background: linear-gradient(45deg, #61cb75, #50b1aa);
+  color: #f8f8f8;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem; }
+
+.noBackground {
+  background: transparent;
+  color: #383838; }
+
 body {
   background-color: #f8f8f8; }
 
@@ -11,17 +76,61 @@ body {
   margin: 0 auto;
   padding: 0 20px; }
 
-.navLogo {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  text-decoration: none;
-  letter-spacing: 0.1rem; }
-
 .navContainer {
-  margin: 30px auto 20px auto; }
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between; }
+
+.navLogo {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding: 0 0.5rem;
+  background: linear-gradient(180deg, transparent 32%, #e2be3f 32%, #e2be3f 90%, transparent 90%);
+  position: relative; }
+
+.navLogo::before {
+  content: '';
+  background: #61cb75;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 20px;
+  width: 100%;
+  z-index: -1; }
+
+.linksContainer button:last-child {
+  margin-right: 0; }
+
+.podcastDiv {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  position: relative; }
+
+.podcastImage {
+  height: 100%;
+  width: 100%;
+  transition: all 0.5s; }
+
+.podcastDiv:hover .podcastImage,
+.podcastDiv:focus .podcastImage {
+  transform: scale(1.07); }
+
+.podcastsContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+
+.podcastDiv {
+  margin: 10px; }
 
 .footerContainer {
   text-align: center;
+  padding-top: 4rem;
   padding-bottom: 5rem; }
 
 /*# sourceMappingURL=app.css.map */

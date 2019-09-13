@@ -6,6 +6,7 @@ const Footer = () => {
 			<p>
 				Designed and built by{' '}
 				<a
+					className='underlineLink'
 					href='https://github.com/davidlinke'
 					target='_blank'
 					rel='noopener noreferrer'

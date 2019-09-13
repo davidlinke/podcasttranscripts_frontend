@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import Podcast from './Podcast';
 
 const PODCASTS_QUERY = gql`
 	query {
 		podcasts {
 			id
 			title
-			description
-			rssUrl
-			webUrl
 			imageUrl
-			premiumPodcast
-			lastUpdated
 			addedByUser
-			ignoreKeywords
 		}
 	}
 `;
@@ -24,32 +20,45 @@ class Podcasts extends Component {
 		return (
 			<Query query={PODCASTS_QUERY}>
 				{({ loading, error, data }) => {
-					if (loading) return <div>Fetching..</div>;
+					if (loading) return <div>Loading podcasts.</div>;
 					if (error) return <div>Error!</div>;
 					return (
-						<div className='outerContainer'>
-							<h1>Read and Search Podcast Transcripts</h1>
-							{data.podcasts.map(podcast => {
-								return (
-									<div key={podcast.id}>
-										<p>Podcast ID: {podcast.id}</p>
-										<p>{podcast.title}</p>
-										<p>{podcast.description}</p>
-										<p>RSS URL: {podcast.rssUrl}</p>
-										<p>Web URL: {podcast.webUrl}</p>
-										<img
-											src={podcast.imageUrl}
-											alt={`Cover art for ${podcast.title}`}
-											className='podcastImage'
-											width='200px'
-										/>
-										<p>Premium Podcast: {podcast.premiumPodcast}</p>
-										<p>Last Updated: {podcast.lastUpdated}</p>
-										<p>Added by user: {podcast.addedByUser}</p>
-										<p>Ignore Keywords: {podcast.ignoreKeywords}</p>
-									</div>
-								);
-							})}
+						<div className='homeContainer'>
+							<h2 className='homeTitle'>PodDialogue</h2>
+							<h1 className='homeSubtitle'>
+								Read &amp; Search Podcast Transcripts.
+							</h1>
+							<div className='podcastsContainer'>
+								{data.podcasts
+									.sort(function(a, b) {
+										if (a.title < b.title) {
+											return -1;
+										}
+										if (a.title > b.title) {
+											return 1;
+										}
+										return 0;
+									})
+									.map(podcast => {
+										return (
+											<div key={podcast.id} className='podcastDiv'>
+												<Link to={`/podcast/${podcast.id}`}>
+													<div
+														className='podcastImage'
+														style={{
+															backgroundImage: podcast.imageUrl
+																? `url(${podcast.imageUrl})`
+																: 'none',
+															backgroundSize: 'cover',
+															backgroundRepeat: 'no-repeat',
+															backgroundPosition: '50% 50%'
+														}}
+													></div>
+												</Link>
+											</div>
+										);
+									})}
+							</div>
 						</div>
 					);
 				}}
