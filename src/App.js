@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Podcasts from './components/Podcasts';
 import Podcast from './components/Podcast';

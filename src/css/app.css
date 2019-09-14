@@ -4,7 +4,18 @@
   color: #383838; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  font-weight: 700; }
+
+p {
+  font-size: 0.9rem;
+  font-weight: 400; }
+
+.sansserif,
+.time {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem; }
 
 .underlineLink,
 .noBackground {
@@ -59,10 +70,15 @@ h2 {
 button {
   border: transparent;
   background-color: #61cb75;
-  background: linear-gradient(45deg, #61cb75, #50b1aa);
+  background-image: linear-gradient(to right, #61cb75, #50b1aa);
+  background-size: 200% auto;
   color: #f8f8f8;
   cursor: pointer;
-  padding: 0.4rem 0.6rem; }
+  padding: 0.4rem 0.6rem;
+  transition: 0.5s; }
+
+button:hover {
+  background-position: right center; }
 
 .noBackground {
   background: transparent;
@@ -88,18 +104,22 @@ body {
   font-size: 1.5rem;
   text-decoration: none;
   padding: 0 0.5rem;
-  background: linear-gradient(180deg, transparent 32%, #e2be3f 32%, #e2be3f 90%, transparent 90%);
   position: relative; }
 
 .navLogo::before {
   content: '';
-  background: #61cb75;
+  background: #e2be3f;
   position: absolute;
-  bottom: 0;
+  bottom: 0.15rem;
   left: 0;
-  height: 20px;
+  height: 1rem;
   width: 100%;
-  z-index: -1; }
+  z-index: -1;
+  transition: all 0.5s; }
+
+.navLogo:hover::before {
+  bottom: -0.5rem;
+  height: 2.3rem; }
 
 .linksContainer button:last-child {
   margin-right: 0; }
@@ -128,9 +148,35 @@ body {
 .podcastDiv {
   margin: 10px; }
 
+#podcastInfo {
+  display: flex;
+  margin: 5rem 0 2rem 0;
+  align-items: center; }
+
+#podcastInfoTextContainer {
+  padding: 2rem;
+  background-color: #e0e0e0;
+  flex-basis: 1;
+  flex-grow: 1; }
+
+.podcastInfoText {
+  margin-top: -3.3rem; }
+
+.podcastDescription {
+  margin-top: 2rem; }
+
+#podcastMainImage {
+  height: 35%;
+  width: 35%;
+  flex-basis: 1;
+  flex-grow: 1; }
+
 .footerContainer {
   text-align: center;
   padding-top: 4rem;
   padding-bottom: 5rem; }
+
+.deemphasized {
+  color: #858585; }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+// eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import Podcast from './Podcast';
 
 const PODCASTS_QUERY = gql`
 	query {

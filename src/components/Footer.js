@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
 	return (
 		<div className='outerContainer footerContainer'>
-			<p>
+			<p className='footerText'>
 				Designed and built by{' '}
 				<a
 					className='underlineLink'
@@ -13,6 +13,11 @@ const Footer = () => {
 				>
 					David Linke
 				</a>
+			</p>
+			<p className='footerText deemphasized'>
+				PodDialogue is a community driven project to organize and make podcast
+				transcripts accessible. All content rights belong to their respective
+				owners.
 			</p>
 		</div>
 	);

@@ -5,6 +5,19 @@
 
 a {
 	text-decoration: none;
+	font-weight: 700;
+}
+
+p {
+	font-size: 0.9rem;
+	font-weight: 400;
+}
+
+.sansserif,
+.time {
+	font-family: $sansserif-font;
+	font-weight: 300;
+	font-size: 0.75rem;
 }
 
 .underlineLink,
@@ -31,7 +44,6 @@ button,
 	background: $yellow1;
 	position: absolute;
 	bottom: -4px;
-	// bottom: 11px;
 	left: 0;
 	height: 2px;
 	width: 100%;
@@ -67,15 +79,19 @@ h2 {
 	margin-bottom: 4rem;
 }
 
-// @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Playfair+Display:400,400i,700,700i,900,900i&display=swap');
-
 button {
 	border: transparent;
 	background-color: $green1;
-	background: linear-gradient(45deg, $green1, $green2);
+	background-image: linear-gradient(to right, $green1, $green2);
+	background-size: 200% auto;
 	color: $white;
 	cursor: pointer;
 	padding: 0.4rem 0.6rem;
+	transition: 0.5s;
+}
+
+button:hover {
+	background-position: right center;
 }
 
 .noBackground {
@@ -106,61 +122,26 @@ body {
 	font-size: 1.5rem;
 	text-decoration: none;
 	padding: 0 0.5rem;
-	background: linear-gradient(
-		180deg,
-		transparent 32%,
-		$yellow1 32%,
-		$yellow1 90%,
-		transparent 90%
-	);
 	position: relative;
-	// transition: all 2s;
-	// -webkit-transition: all 2s;
-	// background: $yellow1;
-	// background-size: 0.5rem;
-	// background-repeat: repeat-x;
-	// background-size: 50% 100%;
-	// background-position: 0.5rem;
-	// background-repeat: no-repeat;
 }
-
-// .navLogo:after {
-// 	content: '';
-// 	position: fixed;
-// 	height: 100%;
-// 	width: 50%;
-// 	left: 50%;
-// 	background: #116699;
-// }
-
-// .navLogo:hover {
-// 	// background: linear-gradient(
-// 	// 	180deg,
-// 	// 	transparent 15%,
-// 	// 	$green2 15%,
-// 	// 	$green2 100%,
-// 	// 	transparent 100%
-// 	// );
-// 	background-position: 1rem;
-// 	background-size: 2rem;
-// 	transition: all 1s;
-// }
 
 .navLogo::before {
 	content: '';
-	background: $green1;
+	background: $yellow1;
 	position: absolute;
-	bottom: 0;
+	bottom: 0.15rem;
 	left: 0;
-	height: 20px;
+	height: 1rem;
 	width: 100%;
 	z-index: -1;
+	transition: all 0.5s;
+}
+
+.navLogo:hover::before {
+	bottom: -0.5rem;
+	height: 2.3rem;
 }
 
 .linksContainer button:last-child {
 	margin-right: 0;
 }
-
-// @media only screen and (max-width: 600px) {
-
-// }
