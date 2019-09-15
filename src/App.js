@@ -5,12 +5,9 @@ import Podcasts from './components/Podcasts';
 import Podcast from './components/Podcast';
 import Episode from './components/Episode';
 import Footer from './components/Footer';
-// import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 function App() {
 	return (
-		// <Route
-		// 	render={({ location }) => (
 		<div className='outerContainer'>
 			<div className='navContainer'>
 				<Link to='/' className='navLogo'>
@@ -28,27 +25,14 @@ function App() {
 					</Link>
 				</div>
 			</div>
-			{/* <TransitionGroup>
-						<CSSTransition
-							key={location.key}
-							timeout={300}
-							classNames='slideAndScale'
-						> */}
-			{/* <Switch location={location}> */}
+
 			<Switch>
 				<Route exact path='/' component={Podcasts} />
 				<Route path='/podcast/:id' component={Podcast} />
-				<Route path='/episode/:id' component={Episode} />
-				{/* <Route path='/episode/:id/edit' component={} />
-								<Route path='/episode/:id/addtranscript' component={} />
-								<Route path='/createaccount' component={} /> */}
+				<Route path='/episode/:pod_id/:ep_id' component={Episode} />
 			</Switch>
-			{/* </CSSTransition>
-					</TransitionGroup> */}
 			<Footer />
 		</div>
-		// )}
-		// />
 	);
 }
 

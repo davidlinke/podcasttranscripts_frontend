@@ -1,0 +1,47 @@
+#episodeInfo {
+	display: flex;
+	margin: 5rem 0 2rem 0;
+}
+
+#episodeInfoTextContainer {
+	padding: 0 2rem;
+	min-width: 50%;
+}
+
+.publishedDate {
+	display: block;
+	font-family: $sansserif-font;
+	margin-top: 1rem;
+	font-weight: 300;
+}
+
+#episodeMainImage {
+	height: 35%;
+	width: 35%;
+}
+
+.episodeLink {
+	font-size: 0.8rem;
+	margin-right: 1rem;
+}
+
+#transcriptText {
+	// Need this to show newlines in string correctly
+	white-space: pre-line;
+
+	font-size: 0.9rem;
+	margin-top: 1rem;
+}
+
+@media only screen and (max-width: 800px) {
+	#episodeInfo {
+		flex-direction: column;
+	}
+	#episodeMainImage {
+		height: 80%;
+		width: 80%;
+		max-width: 400px;
+		max-height: 400px;
+		margin-bottom: 5rem;
+	}
+}

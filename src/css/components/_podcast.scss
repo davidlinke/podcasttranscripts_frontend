@@ -25,6 +25,7 @@
 
 .podcastLink {
 	font-size: 0.8rem;
+	// display: block;
 }
 
 .podcastLastUpdated {
@@ -34,6 +35,11 @@
 
 .podcastIgnoring {
 	margin: 0;
+}
+
+.podcastUpdating {
+	display: inline-block;
+	padding-left: 1rem;
 }
 
 .episodeTable {

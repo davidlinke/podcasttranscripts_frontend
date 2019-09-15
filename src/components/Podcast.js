@@ -1,5 +1,4 @@
-// eslint-disable-next-line
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Query } from 'react-apollo';
@@ -8,6 +7,7 @@ import Loading from './Loading';
 import Moment from 'react-moment';
 import ColorThief from 'colorthief';
 import { CSSTransition } from 'react-transition-group';
+import { useMutation } from '@apollo/react-hooks';
 const tinycolor = require('tinycolor2');
 
 function Podcast({ match }) {
@@ -15,6 +15,8 @@ function Podcast({ match }) {
 	const [imgRef, setImgRef] = useState(React.createRef());
 	const [imgLoadError, setimgLoadError] = useState(false);
 	const [pageLoaded, setPageLoaded] = useState(false);
+	const [refetchAll, setRefetchAll] = useState(false);
+	const [refreshAll, setRefreshAll] = useState(false);
 
 	const PODCAST_QUERY = gql`
 	query {
@@ -40,6 +42,31 @@ function Podcast({ match }) {
 	}
 `;
 
+	const REFRESH_QUERY = gql`
+	mutation {
+		updatePodcastEpisodes(input: {
+			podcastId: ${match.params.id}
+		}) {
+			podcast {
+				id
+			}
+			errors
+		}
+	}
+	`;
+
+	// eslint-disable-next-line
+	const [refreshState, { data }] = useMutation(REFRESH_QUERY, {
+		onCompleted({ refreshState }) {
+			setRefetchAll(true);
+		}
+	});
+
+	const resetRefresh = () => {
+		setRefetchAll(false);
+		setRefreshAll(false);
+	};
+
 	return (
 		<>
 			<CSSTransition
@@ -52,7 +79,7 @@ function Podcast({ match }) {
 			</CSSTransition>
 
 			<Query query={PODCAST_QUERY}>
-				{({ loading, error, data }) => {
+				{({ loading, error, data, refetch }) => {
 					if (loading) return <div>Getting podcast...</div>;
 					if (error) return <div>Error getting podcast!</div>;
 					return (
@@ -67,9 +94,13 @@ function Podcast({ match }) {
 										<a
 											className='underlineLink podcastLink'
 											href={data.podcast.webUrl}
+											target='_blank'
+											rel='noopener noreferrer'
 										>
 											Link
 										</a>
+										{/* Empty div for block spacing */}
+										<div></div>
 										{data.podcast.lastUpdated && (
 											<p className='sansserif podcastLastUpdated'>
 												Updated{' '}
@@ -87,6 +118,16 @@ function Podcast({ match }) {
 												Ignoring episodes with "{data.podcast.ignoreKeywords}"
 												in the title.
 											</p>
+										)}
+										<button
+											className='smallButton'
+											onClick={() => refreshState() && setRefreshAll(true)}
+										>
+											Update Episodes
+										</button>
+										{refetchAll && refetch() && resetRefresh()}
+										{refreshAll && (
+											<p className='sansserif podcastUpdating'>Updating...</p>
 										)}
 									</div>
 								</div>
@@ -121,9 +162,13 @@ function Podcast({ match }) {
 											document.getElementById(
 												'podcastInfoTextContainer'
 											).style.background = color;
-											document.getElementsByClassName(
-												'episodeTable'
-											)[0].style.background = color;
+											// Only change color if table exists
+											{
+												data.podcast.episodes.length > 0 &&
+													(document.getElementsByClassName(
+														'episodeTable'
+													)[0].style.background = color);
+											}
 											setPageLoaded(true);
 										}
 									}}
@@ -138,35 +183,56 @@ function Podcast({ match }) {
 									}}
 								/>
 							</div>
-							<div className='episodesContainer'>
-								<h2>Episodes</h2>
-								<table className='episodeTable'>
-									<tbody>
-										{data.podcast.episodes
-											.sort(function(a, b) {
-												const c = Number(
-													a.publishedDate.substr(0, 10).replace(/-/g, '')
-												);
-												const d = Number(
-													b.publishedDate.substr(0, 10).replace(/-/g, '')
-												);
-												if (c > d) {
-													return -1;
-												}
-												if (c < d) {
-													return 1;
-												}
-												return 0;
-											})
-											.map(episode => {
-												return data.podcast.ignoreKeywords ? (
-													episode.title
-														.toLowerCase()
-														.includes(
-															data.podcast.ignoreKeywords.toLowerCase()
-														) ? null : ( // console.log(`not displaying ${episode.title}`)
+							{data.podcast.episodes.length > 0 && (
+								<div className='episodesContainer'>
+									<h2>Episodes</h2>
+									<table className='episodeTable'>
+										<tbody>
+											{data.podcast.episodes
+												.sort(function(a, b) {
+													const c = Number(
+														a.publishedDate.substr(0, 10).replace(/-/g, '')
+													);
+													const d = Number(
+														b.publishedDate.substr(0, 10).replace(/-/g, '')
+													);
+													if (c > d) {
+														return -1;
+													}
+													if (c < d) {
+														return 1;
+													}
+													return 0;
+												})
+												.map(episode => {
+													return data.podcast.ignoreKeywords ? (
+														episode.title
+															.toLowerCase()
+															.includes(
+																data.podcast.ignoreKeywords.toLowerCase()
+															) ? null : ( // console.log(`not displaying ${episode.title}`)
+															<tr key={episode.title}>
+																<Link
+																	to={`/episode/${data.podcast.id}/${episode.id}`}
+																>
+																	<td className='tableDate'>
+																		<Moment
+																			parse='YYYY-MM-DD HH:mm:ss'
+																			format='M/D/YY'
+																			className='tableText'
+																		>
+																			{episode.publishedDate}
+																		</Moment>
+																	</td>
+																	<td className='tableText'>{episode.title}</td>
+																</Link>
+															</tr>
+														)
+													) : (
 														<tr key={episode.title}>
-															<Link to={`/episode/${episode.id}`}>
+															<Link
+																to={`/episode/${data.podcast.id}/${episode.id}`}
+															>
 																<td className='tableDate'>
 																	<Moment
 																		parse='YYYY-MM-DD HH:mm:ss'
@@ -179,27 +245,12 @@ function Podcast({ match }) {
 																<td className='tableText'>{episode.title}</td>
 															</Link>
 														</tr>
-													)
-												) : (
-													<tr key={episode.title}>
-														<Link to={`/episode/${episode.id}`}>
-															<td className='tableDate'>
-																<Moment
-																	parse='YYYY-MM-DD HH:mm:ss'
-																	format='M/D/YY'
-																	className='tableText'
-																>
-																	{episode.publishedDate}
-																</Moment>
-															</td>
-															<td className='tableText'>{episode.title}</td>
-														</Link>
-													</tr>
-												);
-											})}
-									</tbody>
-								</table>
-							</div>
+													);
+												})}
+										</tbody>
+									</table>
+								</div>
+							)}
 						</div>
 					);
 				}}

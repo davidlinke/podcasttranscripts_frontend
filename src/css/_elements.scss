@@ -63,6 +63,7 @@ h1 {
 }
 
 h2 {
+	display: inline-block;
 	font-family: $sansserif-font;
 	font-weight: 300;
 	margin: 0;
@@ -97,6 +98,13 @@ button:hover {
 .noBackground {
 	background: transparent;
 	color: $grey;
+}
+
+.smallButton {
+	margin: 1rem 0 0 0;
+	font-weight: 300;
+	font-size: 0.6rem;
+	background-image: linear-gradient(to right, $blue1, $blue2);
 }
 
 body {

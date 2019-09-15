@@ -54,6 +54,7 @@ h1 {
   margin: 0; }
 
 h2 {
+  display: inline-block;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
   margin: 0;
@@ -83,6 +84,12 @@ button:hover {
 .noBackground {
   background: transparent;
   color: #383838; }
+
+.smallButton {
+  margin: 1rem 0 0 0;
+  font-weight: 300;
+  font-size: 0.6rem;
+  background-image: linear-gradient(to right, #2e6ece, #2358a8); }
 
 body {
   background-color: #f8f8f8; }
@@ -204,6 +211,10 @@ body {
 .podcastIgnoring {
   margin: 0; }
 
+.podcastUpdating {
+  display: inline-block;
+  padding-left: 1rem; }
+
 .episodeTable {
   background: linear-gradient(225deg, #e6e5e5, #c7c6c6); }
 
@@ -228,6 +239,43 @@ td {
     flex-direction: column-reverse; }
 
   #podcastMainImage {
+    height: 80%;
+    width: 80%;
+    max-width: 400px;
+    max-height: 400px;
+    margin-bottom: 5rem; } }
+#episodeInfo {
+  display: flex;
+  margin: 5rem 0 2rem 0; }
+
+#episodeInfoTextContainer {
+  padding: 0 2rem;
+  min-width: 50%; }
+
+.publishedDate {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 1rem;
+  font-weight: 300; }
+
+#episodeMainImage {
+  height: 35%;
+  width: 35%; }
+
+.episodeLink {
+  font-size: 0.8rem;
+  margin-right: 1rem; }
+
+#transcriptText {
+  white-space: pre-line;
+  font-size: 0.9rem;
+  margin-top: 1rem; }
+
+@media only screen and (max-width: 800px) {
+  #episodeInfo {
+    flex-direction: column; }
+
+  #episodeMainImage {
     height: 80%;
     width: 80%;
     max-width: 400px;
