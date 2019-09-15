@@ -1,5 +1,6 @@
 #loadingContainer {
-	background: rgba(0, 0, 0, 1);
+	z-index: 1;
+	background: $white;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -8,11 +9,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	transition: all ease 1s;
-	opacity: 1;
-	// z-index: -1;
+	// transition: all ease 1s;
+	// opacity: 0;
 }
 
 .loadingText {
-	color: white;
+	color: $grey;
 }

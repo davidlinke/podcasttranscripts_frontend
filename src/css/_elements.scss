@@ -110,13 +110,16 @@ body {
 }
 
 .navContainer {
+	position: relative;
 	margin-top: 30px;
 	margin-bottom: 20px;
 	display: flex;
 	justify-content: space-between;
+	z-index: 2;
 }
 
-.navLogo {
+.navLogo,
+.navLogoLoadingIcon {
 	font-family: $serif-font;
 	font-weight: 700;
 	font-size: 1.5rem;
@@ -125,7 +128,8 @@ body {
 	position: relative;
 }
 
-.navLogo::before {
+.navLogo::before,
+.navLogoLoadingIcon::before {
 	content: '';
 	background: $yellow1;
 	position: absolute;
@@ -142,16 +146,17 @@ body {
 	height: 2.3rem;
 }
 
+.navLogoLoadingIcon::before {
+	animation: logoAnimation 1s infinite;
+}
+
+@keyframes logoAnimation {
+	50% {
+		bottom: -0.5rem;
+		height: 2.3rem;
+	}
+}
+
 .linksContainer button:last-child {
 	margin-right: 0;
-}
-
-.fade-enter {
-	opacity: 0;
-	z-index: 1;
-}
-
-.fade-enter.fade-enter-active {
-	opacity: 1;
-	transition: opacity 250ms ease-in;
 }

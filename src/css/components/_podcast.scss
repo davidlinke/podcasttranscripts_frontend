@@ -14,9 +14,6 @@
 	margin-top: -3.3rem;
 }
 
-// .podcastName {
-// }
-
 .podcastDescription {
 	margin-top: 2rem;
 }
@@ -39,11 +36,13 @@
 	margin: 0;
 }
 
+.episodeTable {
+	background: linear-gradient(225deg, rgb(230, 229, 229), rgb(199, 198, 198));
+}
+
 table {
 	table-layout: fixed;
 	width: 100%;
-	// border: 3px solid red;
-	// border: none;
 	margin-top: 1rem;
 }
 
@@ -51,24 +50,8 @@ table {
 	width: 5rem;
 }
 
-// .tableLink {
-// 	width: 100%;
-// }
-
-tr:nth-child(odd) {
-	// width: 100%;
-	// border: 2px solid purple;
-	// background: linear-gradient(125deg, #b8b8b8, #e0dede);
-}
-
-tr:nth-child(even) {
-	// background: linear-gradient(125deg, #e0dede, #b8b8b8);
-}
-
 td {
 	padding: 0.4rem 0;
-	// width: 100px;
-	// border: 1px solid blue;
 }
 
 .tableText {

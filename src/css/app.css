@@ -93,12 +93,15 @@ body {
   padding: 0 20px; }
 
 .navContainer {
+  position: relative;
   margin-top: 30px;
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  z-index: 2; }
 
-.navLogo {
+.navLogo,
+.navLogoLoadingIcon {
   font-family: "Playfair Display", serif;
   font-weight: 700;
   font-size: 1.5rem;
@@ -106,7 +109,8 @@ body {
   padding: 0 0.5rem;
   position: relative; }
 
-.navLogo::before {
+.navLogo::before,
+.navLogoLoadingIcon::before {
   content: '';
   background: #e2be3f;
   position: absolute;
@@ -121,19 +125,19 @@ body {
   bottom: -0.5rem;
   height: 2.3rem; }
 
+.navLogoLoadingIcon::before {
+  animation: logoAnimation 1s infinite; }
+
+@keyframes logoAnimation {
+  50% {
+    bottom: -0.5rem;
+    height: 2.3rem; } }
 .linksContainer button:last-child {
   margin-right: 0; }
 
-.fade-enter {
-  opacity: 0;
-  z-index: 1; }
-
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 250ms ease-in; }
-
 #loadingContainer {
-  background: black;
+  z-index: 1;
+  background: #f8f8f8;
   position: fixed;
   top: 0;
   right: 0;
@@ -141,12 +145,10 @@ body {
   left: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  transition: all ease 1s;
-  opacity: 1; }
+  align-items: center; }
 
 .loadingText {
-  color: white; }
+  color: #383838; }
 
 .podcastDiv {
   width: 200px;
@@ -202,6 +204,9 @@ body {
 .podcastIgnoring {
   margin: 0; }
 
+.episodeTable {
+  background: linear-gradient(225deg, #e6e5e5, #c7c6c6); }
+
 table {
   table-layout: fixed;
   width: 100%;
@@ -237,30 +242,17 @@ td {
   color: #858585; }
 
 .fade-enter {
-  opacity: 0;
-  z-index: 1; }
+  opacity: 0; }
 
-.fade-enter.fade-enter-active {
+.fade-enter-active {
   opacity: 1;
-  transition: opacity 250ms ease-in; }
+  transition: all 750ms; }
 
-.slideAndScale-enter,
-.slideAndScale-exit {
-  position: relative; }
+.fade-exit {
+  opacity: 1; }
 
-@keyframes moveFromRight {
-  from {
-    transform: translateX(100%); } }
-@keyframes scaleDown {
-  to {
-    opacity: 0;
-    transform: scale(0.8); } }
-.slideAndScale-enter-active {
-  animation: moveFromRight 1000ms ease both;
-  z-index: 2; }
-
-.slideAndScale-exit-active {
-  animation: scaleDown 1000ms ease both;
-  z-index: 1; }
+.fade-exit-active {
+  opacity: 0;
+  transition: all 750ms; }
 
 /*# sourceMappingURL=app.css.map */
