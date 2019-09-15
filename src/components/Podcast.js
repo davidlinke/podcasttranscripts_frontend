@@ -47,13 +47,13 @@ function Podcast({ match }) {
 	return (
 		<>
 			{/* {!pageLoaded && <Loading />} */}
-			<Loading />
+			{/* <Loading />
 			{pageLoaded
 				? (document.getElementById('loadingContainer').style.opacity = '0')
 				: ''}
 			{pageLoaded
 				? (document.getElementById('loadingContainer').style.display = 'none')
-				: null}
+				: null} */}
 
 			<Query query={PODCAST_QUERY}>
 				{({ loading, error, data }) => {

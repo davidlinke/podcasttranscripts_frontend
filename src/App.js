@@ -31,8 +31,12 @@ function App() {
 						</div>
 					</div>
 					<TransitionGroup>
-						<CSSTransition key={location} timeout={300} classNames='fade'>
-							<Switch>
+						<CSSTransition
+							key={location.key}
+							timeout={300}
+							classNames='slideAndScale'
+						>
+							<Switch location={location}>
 								<Route exact path='/' component={Podcasts} />
 								<Route path='/podcast/:id' component={Podcast} />
 								<Route path='/episode/:id' component={Episode} />

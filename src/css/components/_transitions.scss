@@ -1,0 +1,37 @@
+.fade-enter {
+	opacity: 0;
+	z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+	opacity: 1;
+	transition: opacity 250ms ease-in;
+}
+
+.slideAndScale-enter,
+.slideAndScale-exit {
+	position: relative;
+}
+
+@keyframes moveFromRight {
+	from {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes scaleDown {
+	to {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+}
+
+.slideAndScale-enter-active {
+	animation: moveFromRight 1000ms ease both;
+	z-index: 2;
+}
+
+.slideAndScale-exit-active {
+	animation: scaleDown 1000ms ease both;
+	z-index: 1;
+}
