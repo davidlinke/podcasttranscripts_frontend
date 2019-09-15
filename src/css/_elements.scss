@@ -66,13 +66,13 @@ h2 {
 	font-family: $sansserif-font;
 	font-weight: 300;
 	margin: 0;
+	background: linear-gradient(45deg, $yellow1, $yellow2);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .homeTitle {
 	margin: 4rem 0 0.2rem 0;
-	background: linear-gradient(45deg, $yellow1, $yellow2);
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
 }
 
 .homeSubtitle {

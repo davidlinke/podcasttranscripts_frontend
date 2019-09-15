@@ -56,13 +56,13 @@ h1 {
 h2 {
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
-  margin: 0; }
-
-.homeTitle {
-  margin: 4rem 0 0.2rem 0;
+  margin: 0;
   background: linear-gradient(45deg, #e2be3f, #cf9c2e);
   background-clip: text;
   -webkit-text-fill-color: transparent; }
+
+.homeTitle {
+  margin: 4rem 0 0.2rem 0; }
 
 .homeSubtitle {
   margin-bottom: 4rem; }
@@ -124,6 +124,22 @@ body {
 .linksContainer button:last-child {
   margin-right: 0; }
 
+#loadingContainer {
+  background: black;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all ease 1s;
+  opacity: 1; }
+
+.loadingText {
+  color: white; }
+
 .podcastDiv {
   width: 200px;
   height: 200px;
@@ -155,9 +171,8 @@ body {
 
 #podcastInfoTextContainer {
   padding: 2rem;
-  background-color: #e0e0e0;
-  flex-basis: 1;
-  flex-grow: 1; }
+  background: linear-gradient(225deg, #e6e5e5, #c7c6c6);
+  min-width: 50%; }
 
 .podcastInfoText {
   margin-top: -3.3rem; }
@@ -167,10 +182,44 @@ body {
 
 #podcastMainImage {
   height: 35%;
-  width: 35%;
-  flex-basis: 1;
-  flex-grow: 1; }
+  width: 35%; }
 
+.podcastLink {
+  font-size: 0.8rem; }
+
+.podcastLastUpdated {
+  margin-top: 3rem;
+  margin-bottom: 0; }
+
+.podcastIgnoring {
+  margin: 0; }
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  margin-top: 1rem; }
+
+.tableDate {
+  width: 5rem; }
+
+td {
+  padding: 0.4rem 0; }
+
+.tableText {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem; }
+
+@media only screen and (max-width: 800px) {
+  #podcastInfo {
+    flex-direction: column-reverse; }
+
+  #podcastMainImage {
+    height: 80%;
+    width: 80%;
+    max-width: 400px;
+    max-height: 400px;
+    margin-bottom: 5rem; } }
 .footerContainer {
   text-align: center;
   padding-top: 4rem;
