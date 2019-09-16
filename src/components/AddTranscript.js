@@ -25,7 +25,7 @@ const ADD_TRANSCRIPT_MUTATION = gql`
 `;
 
 function AddTranscript(props) {
-	const { register, handleSubmit, errors, getValues, reset } = useForm();
+	const { register, handleSubmit, getValues } = useForm();
 	const [
 		addNewTranscript,
 		{ loading: mutationLoading, error: mutationError, data: mutationData }

@@ -71,6 +71,25 @@ td {
 	padding: 0 0.2rem;
 }
 
+#searchSubmit {
+	box-sizing: border-box;
+	display: inline-block;
+	background-image: linear-gradient(to right, $green1, $green2);
+	height: 2rem;
+	margin-left: 1rem;
+}
+
+#searchTranscriptInput {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 20rem;
+	height: 2rem;
+}
+
+.searchTranscriptsForm {
+	text-align: center;
+}
+
 @media only screen and (max-width: 800px) {
 	#podcastInfo {
 		flex-direction: column-reverse;

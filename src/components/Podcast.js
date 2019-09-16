@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 // eslint-disable-next-line
 import {
+	// eslint-disable-next-line
 	BrowserRouter as Router,
+	// eslint-disable-next-line
 	Route,
+	// eslint-disable-next-line
 	Link,
+	// eslint-disable-next-line
 	Switch,
-	Redirect,
-	withRouter
+	Redirect
 } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -15,7 +18,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import ColorThief from 'colorthief';
 import { CSSTransition } from 'react-transition-group';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useLazyQuery } from '@apollo/react-hooks';
 
 import EpisodeTable from './EpisodeTable';
 
@@ -29,6 +32,9 @@ function Podcast({ match }) {
 	const [refetchAll, setRefetchAll] = useState(false);
 	const [refreshAll, setRefreshAll] = useState(false);
 	const [redirectToHome, setRedirectToHome] = useState(false);
+	const [transcriptSearchValue, setTranscriptSearchValue] = useState('');
+	const [transcriptQuery, setTranscriptQuery] = useState();
+	const [activeSearch, setActiveSearch] = useState(false);
 
 	const PODCAST_QUERY = gql`
 	query {
@@ -81,6 +87,16 @@ function Podcast({ match }) {
 	}
 	`;
 
+	const SEARCH_QUERY = gql`
+	query {
+		episodes(podcastId: ${match.params.id}, transcriptFilter: "${transcriptQuery}") {
+			id
+			title
+			publishedDate
+		}
+	}
+	`;
+
 	const [refreshState] = useMutation(REFRESH_QUERY, {
 		onCompleted({ refreshState }) {
 			setRefetchAll(true);
@@ -94,7 +110,6 @@ function Podcast({ match }) {
 
 	const [removePodcast] = useMutation(DELETE_QUERY, {
 		onCompleted({ removePodcast }) {
-			console.log('removed');
 			setRedirectToHome(true);
 		}
 	});
@@ -104,6 +119,22 @@ function Podcast({ match }) {
 			return <Redirect to='/' />;
 		}
 	};
+
+	const handleChange = event => {
+		setTranscriptSearchValue(event.target.value);
+	};
+
+	const handleSubmit = event => {
+		event.preventDefault();
+		// Execute only if search field is not empty/does not contain only blank spaces
+		if (transcriptSearchValue.replace(/\s/g, '').length > 0) {
+			setActiveSearch(true);
+			setTranscriptQuery(transcriptSearchValue);
+			filterTranscripts();
+		}
+	};
+
+	const [filterTranscripts, transcriptResults] = useLazyQuery(SEARCH_QUERY);
 
 	return (
 		<>
@@ -229,8 +260,31 @@ function Podcast({ match }) {
 									}}
 								/>
 							</div>
-							{data.podcast.episodes.length > 0 && (
-								<EpisodeTable podcast={data.podcast} />
+							<div>
+								<form className='searchTranscriptsForm' onSubmit={handleSubmit}>
+									<input
+										name='searchTranscripts'
+										value={transcriptSearchValue}
+										onChange={handleChange}
+										placeholder='Search Transcripts'
+										className='textInput'
+										id='searchTranscriptInput'
+									/>
+
+									<input type='submit' value='Search' id='searchSubmit' />
+								</form>
+							</div>
+							{activeSearch && transcriptResults.data && (
+								<EpisodeTable
+									podcast={data.podcast}
+									episodes={transcriptResults.data.episodes}
+								/>
+							)}
+							{data.podcast.episodes.length > 0 && !activeSearch && (
+								<EpisodeTable
+									podcast={data.podcast}
+									episodes={data.podcast.episodes}
+								/>
 							)}
 						</div>
 					);
