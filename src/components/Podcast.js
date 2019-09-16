@@ -9,6 +9,9 @@ import 'moment-timezone';
 import ColorThief from 'colorthief';
 import { CSSTransition } from 'react-transition-group';
 import { useMutation } from '@apollo/react-hooks';
+
+import EpisodeTable from './EpisodeTable';
+
 const tinycolor = require('tinycolor2');
 Moment.globalLocal = true;
 
@@ -184,72 +187,7 @@ function Podcast({ match }) {
 								/>
 							</div>
 							{data.podcast.episodes.length > 0 && (
-								<div className='episodesContainer'>
-									<h2>Episodes</h2>
-									<table className='episodeTable'>
-										<tbody>
-											{data.podcast.episodes
-												.sort(function(a, b) {
-													const c = Number(
-														a.publishedDate.substr(0, 10).replace(/-/g, '')
-													);
-													const d = Number(
-														b.publishedDate.substr(0, 10).replace(/-/g, '')
-													);
-													if (c > d) {
-														return -1;
-													}
-													if (c < d) {
-														return 1;
-													}
-													return 0;
-												})
-												.map(episode => {
-													return data.podcast.ignoreKeywords ? (
-														episode.title
-															.toLowerCase()
-															.includes(
-																data.podcast.ignoreKeywords.toLowerCase()
-															) ? null : (
-															<tr key={episode.title + episode.id}>
-																<Link
-																	to={`/episode/${data.podcast.id}/${episode.id}`}
-																>
-																	<td className='tableDate'>
-																		<Moment
-																			parse='YYYY-MM-DD HH:mm:ss'
-																			format='M/D/YY'
-																			className='tableText'
-																		>
-																			{episode.publishedDate}
-																		</Moment>
-																	</td>
-																	<td className='tableText'>{episode.title}</td>
-																</Link>
-															</tr>
-														)
-													) : (
-														<tr key={episode.title}>
-															<Link
-																to={`/episode/${data.podcast.id}/${episode.id}`}
-															>
-																<td className='tableDate'>
-																	<Moment
-																		parse='YYYY-MM-DD HH:mm:ss'
-																		format='M/D/YY'
-																		className='tableText'
-																	>
-																		{episode.publishedDate}
-																	</Moment>
-																</td>
-																<td className='tableText'>{episode.title}</td>
-															</Link>
-														</tr>
-													);
-												})}
-										</tbody>
-									</table>
-								</div>
+								<EpisodeTable podcast={data.podcast} />
 							)}
 						</div>
 					);
