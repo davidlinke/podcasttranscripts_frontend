@@ -8,6 +8,11 @@ import AddTranscript from './AddTranscript';
 
 function Episode({ match }) {
 	const [showAddTranscript, setShowAddTranscript] = useState(false);
+	const [refetchAll, setRefetchAll] = useState(false);
+
+	const resetRefresh = () => {
+		setRefetchAll(false);
+	};
 
 	const QUERY = gql`
 	query {
@@ -38,11 +43,12 @@ function Episode({ match }) {
 	return (
 		<>
 			<Query query={QUERY}>
-				{({ loading, error, data }) => {
+				{({ loading, error, data, refetch }) => {
 					if (loading) return <div>Getting episode...</div>;
 					if (error) return <div>Error getting episode!</div>;
 					return (
 						<>
+							{refetchAll && refetch() && resetRefresh()}
 							<div className='outerContainer' id='outerDiv'>
 								<div id='episodeInfo' key={data.episode.title}>
 									<img
@@ -104,6 +110,7 @@ function Episode({ match }) {
 									<AddTranscript
 										episodeId={data.episode.id}
 										setShowAddTranscript={setShowAddTranscript}
+										setRefetchAll={setRefetchAll}
 									/>
 								)}
 								{data.episode.transcript && (

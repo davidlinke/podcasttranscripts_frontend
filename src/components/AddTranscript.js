@@ -63,6 +63,7 @@ function AddTranscript(props) {
 				{mutationError && (
 					<p className='errorCreatingPodcast'>Error, please try again.</p>
 				)}
+				{mutationData && props.setRefetchAll(true)}
 				{mutationData && props.setShowAddTranscript(false)}
 			</form>
 		</div>
