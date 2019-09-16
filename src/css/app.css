@@ -25,7 +25,8 @@ p {
   display: inline-block; }
 
 button,
-.navLink {
+.navLink,
+input[type='submit'] {
   margin: 0 0.5rem;
   font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
@@ -68,7 +69,8 @@ h2 {
 .homeSubtitle {
   margin-bottom: 4rem; }
 
-button {
+button,
+input[type='submit'] {
   border: transparent;
   background-color: #61cb75;
   background-image: linear-gradient(to right, #61cb75, #50b1aa);
@@ -78,7 +80,12 @@ button {
   padding: 0.4rem 0.6rem;
   transition: 0.5s; }
 
-button:hover {
+input[type='submit'] {
+  background-image: linear-gradient(to right, #2e6ece, #2358a8);
+  margin: 0 auto; }
+
+button:hover,
+input[type='submit']:hover {
   background-position: right center; }
 
 .noBackground {
@@ -141,6 +148,13 @@ body {
     height: 2.3rem; } }
 .linksContainer button:last-child {
   margin-right: 0; }
+
+.notFoundContainer {
+  margin: 8rem auto;
+  text-align: center; }
+
+.centered {
+  text-align: center; }
 
 #loadingContainer {
   z-index: 1;
@@ -273,7 +287,11 @@ td {
 
 @media only screen and (max-width: 800px) {
   #episodeInfo {
-    flex-direction: column; }
+    flex-direction: column;
+    align-items: center; }
+
+  #episodeInfoTextContainer {
+    padding: 0; }
 
   #episodeMainImage {
     height: 80%;
@@ -281,6 +299,57 @@ td {
     max-width: 400px;
     max-height: 400px;
     margin-bottom: 5rem; } }
+.addPodcastContainer {
+  margin: 5rem auto 0 auto;
+  width: 70%; }
+
+.addPodcastForm {
+  margin-top: 2rem; }
+
+label {
+  text-align: left; }
+
+label {
+  display: block; }
+
+input {
+  box-sizing: border-box;
+  border: none;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  display: block; }
+
+.textInput {
+  width: 100%; }
+
+.inline {
+  display: inline-block !important;
+  margin-bottom: 2rem; }
+
+.premiumPodcast {
+  margin-left: 1rem; }
+
+.podcastCreatedLink,
+.errorCreatingPodcast,
+.addingPodcastState {
+  margin-top: 2rem;
+  text-align: center; }
+
+.podcastCreatedLink {
+  display: inline-block;
+  color: #61cb75; }
+
+.errorCreatingPodcast {
+  display: block;
+  color: #d92e8a; }
+
+.addingPodcastState {
+  display: block;
+  color: #2e6ece; }
+
+@media only screen and (max-width: 800px) {
+  .addPodcastContainer {
+    width: 100%; } }
 .footerContainer {
   text-align: center;
   padding-top: 4rem;

@@ -11,8 +11,7 @@ import { useMutation } from '@apollo/react-hooks';
 const tinycolor = require('tinycolor2');
 
 function Podcast({ match }) {
-	// eslint-disable-next-line
-	const [imgRef, setImgRef] = useState(React.createRef());
+	const [imgRef] = useState(React.createRef());
 	const [imgLoadError, setimgLoadError] = useState(false);
 	const [pageLoaded, setPageLoaded] = useState(false);
 	const [refetchAll, setRefetchAll] = useState(false);
@@ -55,8 +54,7 @@ function Podcast({ match }) {
 	}
 	`;
 
-	// eslint-disable-next-line
-	const [refreshState, { data }] = useMutation(REFRESH_QUERY, {
+	const [refreshState] = useMutation(REFRESH_QUERY, {
 		onCompleted({ refreshState }) {
 			setRefetchAll(true);
 		}
@@ -163,12 +161,11 @@ function Podcast({ match }) {
 												'podcastInfoTextContainer'
 											).style.background = color;
 											// Only change color if table exists
-											{
-												data.podcast.episodes.length > 0 &&
-													(document.getElementsByClassName(
-														'episodeTable'
-													)[0].style.background = color);
-											}
+											data.podcast.episodes.length > 0 &&
+												(document.getElementsByClassName(
+													'episodeTable'
+												)[0].style.background = color);
+
 											setPageLoaded(true);
 										}
 									}}
@@ -210,8 +207,8 @@ function Podcast({ match }) {
 															.toLowerCase()
 															.includes(
 																data.podcast.ignoreKeywords.toLowerCase()
-															) ? null : ( // console.log(`not displaying ${episode.title}`)
-															<tr key={episode.title}>
+															) ? null : (
+															<tr key={episode.title + episode.id}>
 																<Link
 																	to={`/episode/${data.podcast.id}/${episode.id}`}
 																>

@@ -36,6 +36,10 @@
 @media only screen and (max-width: 800px) {
 	#episodeInfo {
 		flex-direction: column;
+		align-items: center;
+	}
+	#episodeInfoTextContainer {
+		padding: 0;
 	}
 	#episodeMainImage {
 		height: 80%;
