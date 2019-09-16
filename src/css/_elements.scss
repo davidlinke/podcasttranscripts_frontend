@@ -115,6 +115,10 @@ input[type='submit']:hover {
 	background-image: linear-gradient(to right, $blue1, $blue2);
 }
 
+.pinkButton {
+	background-image: linear-gradient(to right, $pink, $pink2);
+}
+
 body {
 	background-color: $white;
 }

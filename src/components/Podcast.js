@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 // eslint-disable-next-line
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Route,
+	Link,
+	Switch,
+	Redirect,
+	withRouter
+} from 'react-router-dom';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Loading from './Loading';
@@ -21,6 +28,7 @@ function Podcast({ match }) {
 	const [pageLoaded, setPageLoaded] = useState(false);
 	const [refetchAll, setRefetchAll] = useState(false);
 	const [refreshAll, setRefreshAll] = useState(false);
+	const [redirectToHome, setRedirectToHome] = useState(false);
 
 	const PODCAST_QUERY = gql`
 	query {
@@ -59,6 +67,20 @@ function Podcast({ match }) {
 	}
 	`;
 
+	const DELETE_QUERY = gql`
+	mutation {
+		removePodcast(input: {
+			podcastId: ${match.params.id}
+		}) {
+			removed
+			podcast {
+				id
+			}
+			errors
+		}
+	}
+	`;
+
 	const [refreshState] = useMutation(REFRESH_QUERY, {
 		onCompleted({ refreshState }) {
 			setRefetchAll(true);
@@ -70,8 +92,22 @@ function Podcast({ match }) {
 		setRefreshAll(false);
 	};
 
+	const [removePodcast] = useMutation(DELETE_QUERY, {
+		onCompleted({ removePodcast }) {
+			console.log('removed');
+			setRedirectToHome(true);
+		}
+	});
+
+	const renderRedirect = () => {
+		if (redirectToHome) {
+			return <Redirect to='/' />;
+		}
+	};
+
 	return (
 		<>
+			{renderRedirect()}
 			<CSSTransition
 				in={!pageLoaded}
 				timeout={750}
@@ -128,6 +164,13 @@ function Podcast({ match }) {
 											onClick={() => refreshState() && setRefreshAll(true)}
 										>
 											Update Episodes
+										</button>
+										<div className='spacer'></div>
+										<button
+											className='smallButton pinkButton'
+											onClick={() => removePodcast()}
+										>
+											Delete Podcast
 										</button>
 										{refetchAll && refetch() && resetRefresh()}
 										{refreshAll && (

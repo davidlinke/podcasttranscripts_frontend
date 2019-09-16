@@ -1,0 +1,32 @@
+label {
+	text-align: left;
+	display: block;
+}
+
+input,
+textarea {
+	box-sizing: border-box;
+	border: none;
+	margin: 1rem auto;
+	padding: 0.5rem;
+	display: block;
+}
+
+.textInput {
+	width: 100%;
+}
+
+textarea {
+	height: 20rem;
+	font-size: 0.8rem;
+}
+
+.inline {
+	display: inline-block !important;
+	margin-bottom: 2rem;
+}
+
+.addTranscriptContainer {
+	margin: 5rem auto 0 auto;
+	width: 100%;
+}

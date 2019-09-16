@@ -19,8 +19,8 @@
 }
 
 #podcastMainImage {
-	height: 35%;
-	width: 35%;
+	height: 40%;
+	width: 40%;
 }
 
 .podcastLink {
@@ -66,13 +66,18 @@ td {
 	font-size: 0.9rem;
 }
 
+.spacer {
+	display: inline-block;
+	padding: 0 0.2rem;
+}
+
 @media only screen and (max-width: 800px) {
 	#podcastInfo {
 		flex-direction: column-reverse;
 	}
 	#podcastMainImage {
-		height: 80%;
-		width: 80%;
+		height: 100%;
+		width: 100%;
 		max-width: 400px;
 		max-height: 400px;
 		margin-bottom: 5rem;

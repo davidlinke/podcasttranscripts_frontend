@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Moment from 'react-moment';
+import AddTranscript from './AddTranscript';
 
 function Episode({ match }) {
+	const [showAddTranscript, setShowAddTranscript] = useState(false);
+
 	const QUERY = gql`
 	query {
 		podcast(id: ${match.params.pod_id}) {
@@ -75,15 +78,34 @@ function Episode({ match }) {
 													Download Episode
 												</a>
 											)}
-											{!data.episode.transcript && (
-												<button className='smallButton'>Add Transcript</button>
+											{!data.episode.transcript && !showAddTranscript && (
+												<button
+													className='smallButton'
+													onClick={() => setShowAddTranscript(true)}
+												>
+													Add Transcript
+												</button>
 											)}
-											{data.episode.transcript && (
+											{!data.episode.transcript && showAddTranscript && (
+												<button
+													className='smallButton pinkButton'
+													onClick={() => setShowAddTranscript(false)}
+												>
+													Cancel Add Transcript
+												</button>
+											)}
+											{/* {data.episode.transcript && (
 												<button className='smallButton'>Edit Transcript</button>
-											)}
+											)} */}
 										</div>
 									</div>
 								</div>
+								{showAddTranscript && (
+									<AddTranscript
+										episodeId={data.episode.id}
+										setShowAddTranscript={setShowAddTranscript}
+									/>
+								)}
 								{data.episode.transcript && (
 									<div className='transcriptContainer'>
 										<h2>Transcript</h2>

@@ -98,6 +98,9 @@ input[type='submit']:hover {
   font-size: 0.6rem;
   background-image: linear-gradient(to right, #2e6ece, #2358a8); }
 
+.pinkButton {
+  background-image: linear-gradient(to right, #d92e8a, #d92e37); }
+
 body {
   background-color: #f8f8f8; }
 
@@ -212,8 +215,8 @@ body {
   margin-top: 2rem; }
 
 #podcastMainImage {
-  height: 35%;
-  width: 35%; }
+  height: 40%;
+  width: 40%; }
 
 .podcastLink {
   font-size: 0.8rem; }
@@ -248,13 +251,17 @@ td {
   font-weight: 300;
   font-size: 0.9rem; }
 
+.spacer {
+  display: inline-block;
+  padding: 0 0.2rem; }
+
 @media only screen and (max-width: 800px) {
   #podcastInfo {
     flex-direction: column-reverse; }
 
   #podcastMainImage {
-    height: 80%;
-    width: 80%;
+    height: 100%;
+    width: 100%;
     max-width: 400px;
     max-height: 400px;
     margin-bottom: 5rem; } }
@@ -306,26 +313,6 @@ td {
 .addPodcastForm {
   margin-top: 2rem; }
 
-label {
-  text-align: left; }
-
-label {
-  display: block; }
-
-input {
-  box-sizing: border-box;
-  border: none;
-  margin: 1rem auto;
-  padding: 0.5rem;
-  display: block; }
-
-.textInput {
-  width: 100%; }
-
-.inline {
-  display: inline-block !important;
-  margin-bottom: 2rem; }
-
 .premiumPodcast {
   margin-left: 1rem; }
 
@@ -371,5 +358,32 @@ input {
 .fade-exit-active {
   opacity: 0;
   transition: all 750ms; }
+
+label {
+  text-align: left;
+  display: block; }
+
+input,
+textarea {
+  box-sizing: border-box;
+  border: none;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  display: block; }
+
+.textInput {
+  width: 100%; }
+
+textarea {
+  height: 20rem;
+  font-size: 0.8rem; }
+
+.inline {
+  display: inline-block !important;
+  margin-bottom: 2rem; }
+
+.addTranscriptContainer {
+  margin: 5rem auto 0 auto;
+  width: 100%; }
 
 /*# sourceMappingURL=app.css.map */
