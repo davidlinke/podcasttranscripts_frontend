@@ -42,30 +42,6 @@
 	padding-left: 1rem;
 }
 
-.episodeTable {
-	background: linear-gradient(225deg, rgb(230, 229, 229), rgb(199, 198, 198));
-}
-
-table {
-	table-layout: fixed;
-	width: 100%;
-	margin-top: 1rem;
-}
-
-.tableDate {
-	width: 5rem;
-}
-
-td {
-	padding: 0.4rem 0;
-}
-
-.tableText {
-	font-family: $sansserif-font;
-	font-weight: 300;
-	font-size: 0.9rem;
-}
-
 .spacer {
 	display: inline-block;
 	padding: 0 0.2rem;

@@ -232,25 +232,6 @@ body {
   display: inline-block;
   padding-left: 1rem; }
 
-.episodeTable {
-  background: linear-gradient(225deg, #e6e5e5, #c7c6c6); }
-
-table {
-  table-layout: fixed;
-  width: 100%;
-  margin-top: 1rem; }
-
-.tableDate {
-  width: 5rem; }
-
-td {
-  padding: 0.4rem 0; }
-
-.tableText {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
-  font-size: 0.9rem; }
-
 .spacer {
   display: inline-block;
   padding: 0 0.2rem; }
@@ -353,6 +334,28 @@ td {
 @media only screen and (max-width: 800px) {
   .addPodcastContainer {
     width: 100%; } }
+.episodeTable {
+  background: linear-gradient(225deg, #e6e5e5, #c7c6c6); }
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  margin-top: 1rem; }
+
+.tableDate {
+  display: inline-block;
+  width: 5rem;
+  padding-left: 0.4rem; }
+
+.tableRow {
+  padding: 0.4rem 0; }
+
+.tableText {
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem; }
+
 .footerContainer {
   text-align: center;
   padding-top: 4rem;

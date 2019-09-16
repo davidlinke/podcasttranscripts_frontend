@@ -1,0 +1,26 @@
+.episodeTable {
+	background: linear-gradient(225deg, rgb(230, 229, 229), rgb(199, 198, 198));
+}
+
+table {
+	table-layout: fixed;
+	width: 100%;
+	margin-top: 1rem;
+}
+
+.tableDate {
+	display: inline-block;
+	width: 5rem;
+	padding-left: 0.4rem;
+}
+
+.tableRow {
+	padding: 0.4rem 0;
+}
+
+.tableText {
+	display: inline-block;
+	font-family: $sansserif-font;
+	font-weight: 300;
+	font-size: 0.9rem;
+}

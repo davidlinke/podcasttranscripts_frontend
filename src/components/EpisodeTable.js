@@ -14,8 +14,8 @@ function EpisodeTable(props) {
 			{props.episodes.length > 0 && (
 				<>
 					<h2>Episodes</h2>
-					<table className='episodeTable'>
-						<tbody>
+					<div className='episodeTable'>
+						<div>
 							{props.episodes
 								.sort(function(a, b) {
 									const c = Number(
@@ -39,9 +39,12 @@ function EpisodeTable(props) {
 											.includes(
 												props.podcast.ignoreKeywords.toLowerCase()
 											) ? null : (
-											<tr key={episode.title + episode.id}>
+											<div
+												className='tableRow'
+												key={episode.title + episode.id}
+											>
 												<Link to={`/episode/${props.podcast.id}/${episode.id}`}>
-													<td className='tableDate'>
+													<div className='tableDate'>
 														<Moment
 															parse='YYYY-MM-DD HH:mm:ss'
 															format='M/D/YY'
@@ -49,15 +52,15 @@ function EpisodeTable(props) {
 														>
 															{episode.publishedDate}
 														</Moment>
-													</td>
-													<td className='tableText'>{episode.title}</td>
+													</div>
+													<div className='tableText'>{episode.title}</div>
 												</Link>
-											</tr>
+											</div>
 										)
 									) : (
-										<tr key={episode.title}>
+										<div key={episode.title} className='tableRow'>
 											<Link to={`/episode/${props.podcast.id}/${episode.id}`}>
-												<td className='tableDate'>
+												<div className='tableDate'>
 													<Moment
 														parse='YYYY-MM-DD HH:mm:ss'
 														format='M/D/YY'
@@ -65,14 +68,14 @@ function EpisodeTable(props) {
 													>
 														{episode.publishedDate}
 													</Moment>
-												</td>
-												<td className='tableText'>{episode.title}</td>
+												</div>
+												<div className='tableText'>{episode.title}</div>
 											</Link>
-										</tr>
+										</div>
 									);
 								})}
-						</tbody>
-					</table>
+						</div>
+					</div>
 				</>
 			)}
 		</div>
