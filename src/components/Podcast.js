@@ -5,10 +5,12 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Loading from './Loading';
 import Moment from 'react-moment';
+import 'moment-timezone';
 import ColorThief from 'colorthief';
 import { CSSTransition } from 'react-transition-group';
 import { useMutation } from '@apollo/react-hooks';
 const tinycolor = require('tinycolor2');
+Moment.globalLocal = true;
 
 function Podcast({ match }) {
 	const [imgRef] = useState(React.createRef());
@@ -105,7 +107,8 @@ function Podcast({ match }) {
 												<Moment
 													className='time'
 													parse='YYYY-MM-DD HH:mm:ss'
-													format='M/D/YY'
+													format='M/D/YY h:mma'
+													utc
 												>
 													{data.podcast.lastUpdated}
 												</Moment>
