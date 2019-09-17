@@ -24,9 +24,10 @@ function Podcasts() {
 				return (
 					<div className='homeContainer'>
 						<h2 className='homeTitle'>PodDialogue</h2>
-						<h1 className='homeSubtitle'>
+						{/* <h1 className='homeSubtitle'>
 							Read &amp; Search Podcast Transcripts.
-						</h1>
+						</h1> */}
+						<h1 className='homeSubtitle'>Read Podcast Transcripts.</h1>
 						<div className='podcastsContainer'>
 							{data.podcasts
 								.sort(function(a, b) {

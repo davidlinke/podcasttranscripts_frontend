@@ -261,7 +261,7 @@ function Podcast({ match }) {
 								/>
 							</div>
 							<div>
-								<form className='searchTranscriptsForm' onSubmit={handleSubmit}>
+								{/* <form className='searchTranscriptsForm' onSubmit={handleSubmit}>
 									<input
 										name='searchTranscripts'
 										value={transcriptSearchValue}
@@ -272,7 +272,7 @@ function Podcast({ match }) {
 									/>
 
 									<input type='submit' value='Search' id='searchSubmit' />
-								</form>
+								</form> */}
 							</div>
 							{activeSearch && transcriptResults.data && (
 								<EpisodeTable
