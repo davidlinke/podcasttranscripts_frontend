@@ -10,9 +10,6 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-const url = process.env.REACT_APP_BASEURL;
-console.log(url);
-
 const link = createHttpLink({
 	uri: process.env.REACT_APP_BASEURL
 });
@@ -21,8 +18,6 @@ const client = new ApolloClient({
 	link: link,
 	cache: new InMemoryCache()
 });
-
-console.log(process.env.REACT_APP_BASEURL);
 
 ReactDOM.render(
 	<ApolloProvider client={client}>
