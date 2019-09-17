@@ -4,6 +4,8 @@ A responsively designed website that let's you read and add podcast transcripts.
 
 [https://poddialogue.com](https://poddialogue.com)
 
+The backend repo for this can be found [here](https://github.com/davidlinke/podcasttranscripts_api).
+
 ## Technologies, Frameworks, and Libraries
 
 - React
